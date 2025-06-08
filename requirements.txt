@@ -4,6 +4,4 @@ transformers
 huggingface_hub
 pandas
 numpy
-xgboost
-google-generativeai
 gunicorn
