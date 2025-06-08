@@ -15,12 +15,12 @@ from datetime import timedelta
 import google.generativeai as genai
 import warnings
 import math
-
+import os
 
 app = Flask(__name__)
 
 # === Login HF ===
-login(token="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")
+login(token=os.environ.get("HF_TOKEN"))
 
 # === DETEKSI DEVICE ===
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -150,7 +150,7 @@ def get_gemini_analysis(historical_df, predictions_json):
     Berikut data penjualan (30 hari terakhir dan 30 hari ke depan):
     {data_str}"""
 
-    genai.configure(api_key="AIzaSyDXiL2KIckvagWgQq2aqTDfgxx-YkbND0w")
+    genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
     model = genai.GenerativeModel("gemini-2.0-flash")
 
     try:
